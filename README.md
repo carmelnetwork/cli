@@ -1,0 +1,2 @@
+# cli
+The Carmel CLI
