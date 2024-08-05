@@ -21,6 +21,18 @@ export const walletsDb = async () => {
   return db
 }
 
+export const listWallets = async () => {
+  const db = await walletsDb()
+  const names = Object.keys(db.data)
+
+  return names
+}
+
+export const walletExists = async (name: string) => {
+  const db = await walletsDb()
+  return db.data[name] ? true : false
+}
+
 export const openWallet = async (name: string) => {
   const db = await walletsDb()
   const details = db.data[name]    

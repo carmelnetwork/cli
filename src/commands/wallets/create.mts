@@ -1,10 +1,17 @@
 import { logger } from "@/core/utils.mts"
-import { createWallet } from "@/core/wallets.mjs"
+import { createWallet, walletExists } from "@/core/wallets.mjs"
 
 export const run = async ({ name }: any) => {
     logger(`creating a new wallet ...`, 'wallets')
-    const wallet = await createWallet({ name })
-    console.log(wallet)
+    const exists = await walletExists(name)
+
+    if (exists) {
+        logger(`the [${name}] wallet already exists`, 'wallets')
+        return 
+    }
+
+    await createWallet({ name })
+    logger(`done`, 'wallets')
 }
 
 export const options = () => {
@@ -13,4 +20,4 @@ export const options = () => {
     ]
 }
 
-export const description = "creating a new key"
+export const description = "create a wallet"
