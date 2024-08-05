@@ -1,0 +1,44 @@
+{
+    "name": "@carmel/cli",
+    "version": "1.0.0",
+    "description": "Carmel CLI",
+    "main": "src/index.mts",
+    "type": "module",
+    "scripts": {
+        "start": "DEBUG=carmel* node --env-file .env --import @swc-node/register/esm-register src/scripts/start.mts"
+    },
+    "author": "Chunky <chunky@fluidtrends.com>",
+    "license": "MIT",
+    "dependencies": {
+        "alchemy-sdk": "^3.3.1",
+        "bip32": "^4.0.0",
+        "bip39": "^3.1.0",
+        "bitcoinjs-lib": "^6.1.6",
+        "commander": "^12.1.0",
+        "crypto-js": "^4.2.0",
+        "debug": "^4.3.6",
+        "dotenv": "^16.4.5",
+        "ecpair": "^2.1.0",
+        "figlet": "^1.7.0",
+        "fs-extra": "^11.2.0",
+        "lowdb": "^7.0.1",
+        "multiformats": "^13.2.2",
+        "nanoid": "^5.0.7",
+        "tiny-secp256k1": "^2.2.3",
+        "uuid-mongodb": "^2.5.5"
+    },
+    "devDependencies": {
+        "@swc-node/register": "^1.10.9",
+        "@swc/core": "^1.7.5",
+        "@types/bip32": "^2.0.0",
+        "@types/bip39": "^3.0.0",
+        "@types/bitcoinjs-lib": "^5.0.0",
+        "@types/crypto-js": "^4.2.2",
+        "@types/debug": "^4.1.12",
+        "@types/figlet": "^1.5.8",
+        "@types/fs-extra": "^11.0.4",
+        "@types/node": "^22.1.0",
+        "@types/tiny-secp256k1": "^2.0.1",
+        "typescript": "^5.5.4"
+    }
+}
