@@ -1,8 +1,7 @@
 import { Wallet } from 'alchemy-sdk'
-import { HDNode } from "@ethersproject/hdnode";
+import { HDNode } from "@ethersproject/hdnode"
 import { JSONFilePreset } from 'lowdb/node'
 import path from 'path'
-import { createSshKey } from './keys.mts';
 import ssh from 'ssh2'
 
 const CARMEL_DIR = `${process.env.CARMEL_DIR}`
@@ -50,7 +49,7 @@ export const openWallet = async (name: string) => {
 }
 
 export const getSshKey = async (wallet: any, name: string, slot: number) => {
-  const { db } = wallet
+  let db = wallet ? wallet.db : await walletsDb()
   const all = db.data[name].ssh
 
   if (!all || all.length == 0 || all.length < slot) {
@@ -61,7 +60,8 @@ export const getSshKey = async (wallet: any, name: string, slot: number) => {
 }
 
 export const getEthKey = async (wallet: any, name: string, slot: number) => {
-  const { node } = wallet
+  let wal = wallet || await openWallet(name)
+  const { node } = wal
   const keyNode = node.derivePath(`m/44'/60'/0'/0/${slot}`)
   const { privateKey, address } = nodeDetails(keyNode)
 

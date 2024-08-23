@@ -31,8 +31,14 @@ write_files:
       touch .env
       mkdir .carmel
       mkdir .nvm
+      mkdir .ssl
       mkdir dev
       echo CARMEL_DIR=/home/carmel > .env
+      <% if (env) { %>
+      <% for(let i = 0; i < env.length; i++){ %>
+      echo <%= env[i].key %>=<%= env[i].val %> >> .env
+      <% } %>
+      <% } %>
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
       source ~/.bashrc
       source ~/.nvm/nvm.sh
@@ -58,3 +64,4 @@ runcmd:
   - echo "PermitRootLogin no" >> /etc/ssh/sshd_config
   - systemctl restart sshd
   - [su, carmel, -c, "/home/carmel/setup.sh"]
+  - [su, carmel, -c, "rm -rf /home/carmel/setup.sh"]

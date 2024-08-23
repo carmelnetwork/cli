@@ -19,7 +19,7 @@ export const stackUp = async ({ name, project }: any) => {
     // ensure the setting are part of the stack
     await stackRef.setConfig("carmelDir", { value: CARMEL_DIR })
 
-    // // refresh the stack
+    // refresh the stack
     await stackRef.refresh({ onOutput })
 
     // bring it up

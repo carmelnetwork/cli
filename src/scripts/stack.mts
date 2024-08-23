@@ -1,4 +1,5 @@
 import { nodesDb } from "../core/nodes.mts"
+import { getEthKey } from "../core/wallets.mts"
 import pulumi from "@pulumi/pulumi"
 import fs from 'fs-extra'
 import path from 'path'
@@ -8,21 +9,6 @@ import hcloud from "@pulumi/hcloud"
 const DEFAULT_HCLOUD_DATACENTER = "hel1"
 const DEFAULT_HCLOUD_TYPE = "ccx13"
 const DEFAULT_HCLOUD_IMAGE = "ubuntu-24.04"
-
-// const newVultrInstance = (data: any) => {
-//     const userData = cloudInit(data)
-//     const instance = new vultr.Instance("my-vultr-instance", {
-//         osId: 167, // Ubuntu 20.04 x64
-//         plan: "vc2-1c-1gb", // Plan type
-//         region: "ewr", // Region code
-//         label: "my-instance",
-//         hostname: "my-instance",
-//         userData, // Cloud-Init script
-//         sshKeyIds: ["your-ssh-key-id"], // Replace with your SSH key ID
-//         enableIpv6: true,
-//     })
-//     return instance
-// }
 
 const deployHcloudNode = async (db: any, name: string, config: any) => {
     const node = db.data[name]
@@ -34,14 +20,25 @@ const deployHcloudNode = async (db: any, name: string, config: any) => {
     const cloudInitTplRaw = fs.readFileSync(path.resolve(resDir, 'cloud-init.tpl'), 'utf-8')
     const cloudInitTpl = ejs.compile(cloudInitTplRaw, {})
     
-    const userData = cloudInitTpl({ node })
+    const ethKey = await getEthKey(undefined, node.wallet, node.ethSlot)
 
-    const keyName = `${node.name}-${node.sshSlot}`
+    const env = [{
+        key: "MAIN_ETH_PUBLIC_KEY",
+        val: ethKey.address
+    }, {
+        key: "MAIN_ETH_PRIVATE_KEY",
+        val: ethKey.privateKey
+    }]
+
+    const userData = cloudInitTpl({ node, env })
+    const keyName = `${node.wallet}-${node.sshSlot}`
 
     const key = new hcloud.SshKey(keyName, {
         name: keyName,
         publicKey: node.sshPublicKey
     })
+
+    await new Promise(resolve => setTimeout(resolve, 5000))
 
     console.log("ssh key ready")
 
@@ -66,6 +63,8 @@ const deployHcloudNode = async (db: any, name: string, config: any) => {
 }
 
 const deployNode = async (db: any, name: string, config: any) => {
+    console.log("deploying node ....")
+    
     const node = db.data[name]
     const { provider } = node
 

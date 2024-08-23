@@ -1,7 +1,7 @@
 import { JSONFilePreset } from 'lowdb/node'
 import path from 'path'
 import ssh from 'ssh2'
-import { logger } from "@/core/utils.mts"
+import { logger } from "./utils.mts"
 import { openWallet } from './wallets.mts'
 
 const CARMEL_DIR = `${process.env.CARMEL_DIR}`

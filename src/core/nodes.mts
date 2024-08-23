@@ -23,18 +23,27 @@ export const nodeExists = async (name: string) => {
   return db.data[name] ? true : false
 }
 
-export const createNode = async ({ name, config, stack, project, provider, wallet, ssh, sshKey }: any) => {
-  // const db = await nodesDb()
+export const getNode = async (name: string) => {
+  const db = await nodesDb()
+  return db.data[name]
+}
 
-  // const details = { 
-  //   config, provider, wallet, sshSlot: ssh, sshPublicKey: sshKey.public
-  // }
+export const createNode = async ({ name, config, stack, eth, project, provider, wallet, ssh, sshKey, ssl }: any) => {
+  const db = await nodesDb()
+
+  const details = { 
+    config, provider, wallet, sshSlot: ssh, sshPublicKey: sshKey.public, ethSlot: eth, ssl
+  }
   
-  // db.data[name] = {
-  //   name, ...details
-  // }
+  db.data[name] = {
+    name, ...details
+  }
 
-  // await db.write()
+  await db.write()
   
   await stackUp({ name: stack, project })
+
+  await db.read()
+
+  return db.data[name]
 }
