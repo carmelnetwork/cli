@@ -2,6 +2,8 @@ import { Wallet } from 'alchemy-sdk'
 import { HDNode } from "@ethersproject/hdnode";
 import { JSONFilePreset } from 'lowdb/node'
 import path from 'path'
+import { createSshKey } from './keys.mts';
+import ssh from 'ssh2'
 
 const CARMEL_DIR = `${process.env.CARMEL_DIR}`
 
@@ -15,7 +17,7 @@ const nodeDetails = (node: HDNode) => {
 }
 
 export const walletsDb = async () => {
-  const dbFile = path.resolve(CARMEL_DIR, 'wallets.json')
+  const dbFile = path.resolve(CARMEL_DIR, '.carmel', 'wallets.json')
   const db = await JSONFilePreset(dbFile, { } as any)
 
   return db
@@ -44,17 +46,28 @@ export const openWallet = async (name: string) => {
   const { xpriv } = details
   const node = HDNode.fromExtendedKey(xpriv)
 
-  return { node, ...details }
+  return { node, db, ...details }
 }
 
-export const getKey = async (node: HDNode, batch: number, slot: number) => {
-  const keyNode = node.derivePath(`m/44'/60'/${batch}'/0/${slot}`)
+export const getSshKey = async (wallet: any, name: string, slot: number) => {
+  const { db } = wallet
+  const all = db.data[name].ssh
+
+  if (!all || all.length == 0 || all.length < slot) {
+    return
+  }
+
+  return all[slot]
+}
+
+export const getEthKey = async (wallet: any, name: string, slot: number) => {
+  const { node } = wallet
+  const keyNode = node.derivePath(`m/44'/60'/0'/0/${slot}`)
   const { privateKey, address } = nodeDetails(keyNode)
 
   return {
     address,
     privateKey,
-    batch,
     slot
   }
 }
@@ -67,10 +80,15 @@ export const createWallet = async ({ name }: any) => {
 
     const node = HDNode.fromMnemonic(phrase)
     const details = nodeDetails(node)
-    
+
+    const sshKey = ssh.utils.generateKeyPairSync("ed25519")
+    sshKey.private = Buffer.from(sshKey.private).toString('base64')
+  
     db.data[name] = {
-      name, ...details
+      name, ...details, ssh: [sshKey]
     }
 
     await db.write()
+    
+    return { phrase }
 }

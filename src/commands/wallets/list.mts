@@ -6,6 +6,11 @@ export const run = async ({ name }: any) => {
 
     const names = await listWallets()
 
+    if (names.length == 0) {
+        logger(`No wallets yet`, 'wallets')
+        return 
+    }
+
     logger(`found ${names.length} wallets:`)
 
     names.map((id: string, i: number) => {

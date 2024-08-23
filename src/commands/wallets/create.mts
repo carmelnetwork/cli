@@ -10,8 +10,8 @@ export const run = async ({ name }: any) => {
         return 
     }
 
-    await createWallet({ name })
-    logger(`done`, 'wallets')
+    const { phrase } = await createWallet({ name })
+    logger(`Done. Save this phrase: ${phrase}`, 'wallets')
 }
 
 export const options = () => {

@@ -1,0 +1,12 @@
+name: carmel
+main: src/scripts/stack.mts
+runtime:
+  name: nodejs
+  options:
+    nodeargs: "--loader ts-node/esm --no-warnings --experimental-specifier-resolution=node"
+    packagemanager: yarn
+description: A carmel network slice
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: typescript

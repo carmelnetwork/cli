@@ -1,0 +1,3 @@
+config:
+  carmel:CARMEL_ROOT: /Users/idc/dev/chunky/carmel/carmel-cli
+  carmel:carmelDir: /Users/idc/dev/chunky/carmel/carmel-cli
