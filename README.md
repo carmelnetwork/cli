@@ -42,3 +42,12 @@ carmel keys get --id <id>
 
 * the 3rd eth key: `carmel keys get --id main/eth/2`
 * the 1st ssh key: `carmel keys get --id main/ssh/0`
+
+
+## Nodes
+
+### Create a node
+
+### List nodes
+
+### SSH into a node
