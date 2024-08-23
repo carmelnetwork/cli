@@ -32,6 +32,8 @@ carmel keys create --config <config>
 
 *default id: `main/eth/0`*
 
+*id format: `<wallet name>/<type of key>/<key index>`*
+
 ```
 carmel keys get --id <id>
 ```
