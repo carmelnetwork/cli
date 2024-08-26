@@ -5,7 +5,7 @@
     "main": "src/index.mts",
     "type": "module",
     "scripts": {
-        "cli": "DEBUG=carmel* node --env-file .env --import @swc-node/register/esm-register src/scripts/start.mts"
+        "cli": "DEBUG=carmel* node --import @swc-node/register/esm-register src/scripts/start.mts"
     },
     "author": "Chunky <chunky@fluidtrends.com>",
     "license": "MIT",

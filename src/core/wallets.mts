@@ -4,7 +4,7 @@ import { JSONFilePreset } from 'lowdb/node'
 import path from 'path'
 import ssh from 'ssh2'
 
-const CARMEL_DIR = `${process.env.CARMEL_DIR}`
+const CARMEL_HOME = `${process.env.CARMEL_HOME}`
 
 const nodeDetails = (node: HDNode) => {
     const xpriv = node.extendedKey
@@ -16,7 +16,7 @@ const nodeDetails = (node: HDNode) => {
 }
 
 export const walletsDb = async () => {
-  const dbFile = path.resolve(CARMEL_DIR, '.carmel', 'wallets.json')
+  const dbFile = path.resolve(CARMEL_HOME, '.carmel', 'wallets.json')
   const db = await JSONFilePreset(dbFile, { } as any)
 
   return db

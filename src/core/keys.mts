@@ -4,10 +4,10 @@ import ssh from 'ssh2'
 import { logger } from "./utils.mts"
 import { openWallet } from './wallets.mts'
 
-const CARMEL_DIR = `${process.env.CARMEL_DIR}`
+const CARMEL_HOME = `${process.env.CARMEL_HOME}`
 
 export const keysDb = async () => {
-  const dbFile = path.resolve(CARMEL_DIR, '.carmel', 'keys.json')
+  const dbFile = path.resolve(CARMEL_HOME, '.carmel', 'keys.json')
   const db = await JSONFilePreset(dbFile, { } as any)
 
   return db

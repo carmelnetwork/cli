@@ -2,10 +2,10 @@ import { JSONFilePreset } from 'lowdb/node'
 import { stackUp } from "./stack.mts"
 import path from 'path'
 
-const CARMEL_DIR = `${process.env.CARMEL_DIR}`
+const CARMEL_HOME = `${process.env.CARMEL_HOME}`
 
 export const nodesDb = async () => {
-  const dbFile = path.resolve(CARMEL_DIR, '.carmel', 'nodes.json')
+  const dbFile = path.resolve(CARMEL_HOME, '.carmel', 'nodes.json')
   const db = await JSONFilePreset(dbFile, { } as any)
 
   return db

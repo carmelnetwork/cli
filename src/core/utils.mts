@@ -5,7 +5,7 @@ import scp from 'node-scp'
 import { getSshKey } from './wallets.mts'
 
 const LOG = debug("carmel")
-const CARMEL_DIR = `${process.env.CARMEL_DIR}`
+const CARMEL_HOME = `${process.env.CARMEL_HOME}`
 
 export const logger = (msg: string, func: string = '') => msg.trim() && (func ? LOG(`[${func}]`, msg) : LOG(msg))
 
@@ -58,7 +58,7 @@ export const sendFilesToNode = async (node: any) => {
         return 
     }
 
-    const sslDir = path.resolve(CARMEL_DIR, '.carmel', 'ssl')
+    const sslDir = path.resolve(CARMEL_HOME, '.carmel', 'ssl')
     const keyFile = path.resolve(sslDir, `${node.ssl}.key`)
     const certFile = path.resolve(sslDir, `${node.ssl}.cert`)
 

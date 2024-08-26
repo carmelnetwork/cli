@@ -14,7 +14,7 @@ const deployHcloudNode = async (db: any, name: string, config: any) => {
     const node = db.data[name]
     console.log(`Deploying node ${node.name} to an hcloud ...`)
 
-    const carmelDir = config.require("carmelDir")
+    const carmelDir = config.require("CARMEL_HOME")
     const resDir = path.resolve(carmelDir, 'res')
     
     const cloudInitTplRaw = fs.readFileSync(path.resolve(resDir, 'cloud-init.tpl'), 'utf-8')
