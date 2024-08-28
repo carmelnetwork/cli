@@ -1,5 +1,5 @@
-import { openWallet, getEthKey, getSshKey } from "@/core/wallets.mjs"
-import { logger } from "@/core/utils.mts"
+import { openWallet, getEthKey, getSshKey } from "~/core/wallets.mjs"
+import { logger } from "~/core/utils.mts"
 
 const ethKey = async ({ wallet, name, slot }: any) => {
     const key = await getEthKey(wallet, name, slot)

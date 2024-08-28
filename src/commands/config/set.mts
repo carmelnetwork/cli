@@ -1,5 +1,5 @@
-import { logger } from "@/core/utils.mts"
-import { setConfig } from "@/core/config.mts"
+import { logger } from "~/core/utils.mts"
+import { setConfig } from "~/core/config.mts"
 
 export const run = async ({ name, value }: any) => {
     logger(`creating a new config ...`, 'config')

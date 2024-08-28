@@ -1,9 +1,11 @@
 { 
-    "ts-node": { "esm": true },
+    "ts-node": { 
+      "esm": true
+    },
     "compilerOptions": {
       "allowImportingTsExtensions": true,
       "baseUrl": ".",
-      "target": "ES2022",
+      "target": "ESNext",
       "lib": ["dom", "dom.iterable", "esnext"],
       "allowJs": true,
       "skipLibCheck": true,
@@ -19,7 +21,7 @@
       "jsx": "preserve",
       "incremental": true,
       "paths": {
-        "@/*": ["./src/*"]
+        "~/*": ["./src/*"]
       }
     },
     "include": ["types/*.d.ts", "**/*.mts"],

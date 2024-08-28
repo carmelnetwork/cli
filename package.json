@@ -1,16 +1,20 @@
 {
     "name": "@carmel/cli",
-    "version": "1.0.0",
+    "version": "1.9.28",
     "description": "Carmel CLI",
     "main": "src/index.mts",
     "type": "module",
     "scripts": {
         "cli": "DEBUG=carmel* node --import @swc-node/register/esm-register src/scripts/start.mts"
     },
+    "bin": {
+        "carmel": "src/scripts/start.mts"
+    },
     "author": "Chunky <chunky@fluidtrends.com>",
     "license": "MIT",
     "dependencies": {
-        "@carmel/node": "^1.2.2",
+        "@swc-node/register": "^1.10.9",
+        "@swc/core": "^1.7.5",
         "@ediri/vultr": "^2.21.1",
         "@pulumi/hcloud": "^1.20.0",
         "@pulumi/pulumi": "^3.129.0",
@@ -30,17 +34,15 @@
         "lowdb": "^7.0.1",
         "multiformats": "^13.2.2",
         "nanoid": "^5.0.7",
+        "typescript": "^5.5.4",
         "node-scp": "^0.0.23",
         "readline": "^1.3.0",
         "ssh2": "^1.15.0",
         "tiny-secp256k1": "^2.2.3",
         "ts-node": "^10.9.2",
-        "upath": "^2.0.1",
-        "uuid-mongodb": "^2.5.5"
+        "upath": "^2.0.1"
     },
     "devDependencies": {
-        "@swc-node/register": "^1.10.9",
-        "@swc/core": "^1.7.5",
         "@types/bip32": "^2.0.0",
         "@types/bip39": "^3.0.0",
         "@types/bitcoinjs-lib": "^5.0.0",
@@ -49,9 +51,8 @@
         "@types/ejs": "^3.1.5",
         "@types/figlet": "^1.5.8",
         "@types/fs-extra": "^11.0.4",
-        "@types/node": "^22.1.0",
+        "@types/node": "^22.5.1",
         "@types/ssh2": "^1.15.1",
-        "@types/tiny-secp256k1": "^2.0.1",
-        "typescript": "^5.5.4"
+        "@types/tiny-secp256k1": "^2.0.1"
     }
 }

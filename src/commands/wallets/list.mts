@@ -1,5 +1,5 @@
-import { logger } from "@/core/utils.mts"
-import { listWallets } from "@/core/wallets.mjs"
+import { logger } from "~/core/utils.mts"
+import { listWallets } from "~/core/wallets.mjs"
 
 export const run = async ({ name }: any) => {
     logger(`listing wallets ...`, 'wallets')

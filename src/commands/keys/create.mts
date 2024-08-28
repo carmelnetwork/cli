@@ -1,6 +1,6 @@
-import { openWallet } from "@/core/wallets.mjs"
-import { createSshKey } from "@/core/keys.mjs"
-import { logger } from "@/core/utils.mts"
+import { openWallet } from "~/core/wallets.mjs"
+import { createSshKey } from "~/core/keys.mjs"
+import { logger } from "~/core/utils.mts"
 
 export const run = async ({ config }: any) => {
     logger(`creating a new ${config}] key ...`, 'keys')

@@ -1,5 +1,5 @@
-import { logger } from "@/core/utils.mts"
-import { listNodes, nodesDb } from "@/core/nodes.mjs"
+import { logger } from "~/core/utils.mts"
+import { listNodes, nodesDb } from "~/core/nodes.mjs"
 import * as dotenv from 'dotenv'
 
 dotenv.config()

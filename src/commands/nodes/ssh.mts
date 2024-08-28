@@ -1,8 +1,8 @@
 import ssh from 'ssh2'
 import readline from 'readline'
-import { logger, sendFilesToNode } from "@/core/utils.mts"
-import { getNode } from "@/core/nodes.mjs"
-import { getSshKey } from "@/core/wallets.mjs"
+import { logger, sendFilesToNode } from "~/core/utils.mts"
+import { getNode } from "~/core/nodes.mjs"
+import { getSshKey } from "~/core/wallets.mjs"
 
 export const run = async ({ name }: any) => {
     logger(`attempting to ssh into the ${name} node ...`, 'nodes')

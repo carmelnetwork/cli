@@ -1,6 +1,6 @@
-import { logger, sendFilesToNode } from "@/core/utils.mts"
-import { createNode, nodeExists } from "@/core/nodes.mjs"
-import { getSshKey, openWallet } from "@/core/wallets.mjs"
+import { logger, sendFilesToNode } from "~/core/utils.mts"
+import { createNode, nodeExists } from "~/core/nodes.mjs"
+import { getSshKey, openWallet } from "~/core/wallets.mjs"
 
 export const run = async ({ name, config, provider, domain, wallet, ssh, stack, project, eth, ssl }: any) => {
     logger(`creating a new ${config} node on ${provider} with name=${name}, ssl=${ssl}, wallet=${wallet}, ssh=${ssh} and eth=${eth} ...`, 'nodes')

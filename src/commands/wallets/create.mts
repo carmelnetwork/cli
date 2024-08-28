@@ -1,5 +1,5 @@
-import { logger } from "@/core/utils.mts"
-import { createWallet, walletExists } from "@/core/wallets.mjs"
+import { logger } from "~/core/utils.mts"
+import { createWallet, walletExists } from "~/core/wallets.mjs"
 
 export const run = async ({ name }: any) => {
     logger(`creating a new wallet ...`, 'wallets')
