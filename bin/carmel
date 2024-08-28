@@ -1,0 +1,2 @@
+cd $CARMEL_CLI_HOME
+yarn cli "$@"

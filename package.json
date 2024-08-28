@@ -1,8 +1,7 @@
 {
     "name": "@carmel/cli",
-    "version": "1.9.28",
+    "version": "1.9.29",
     "description": "Carmel CLI",
-    "main": "src/index.mts",
     "type": "module",
     "scripts": {
         "cli": "DEBUG=carmel* node --import @swc-node/register/esm-register src/scripts/start.mts"
