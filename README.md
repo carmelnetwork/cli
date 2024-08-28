@@ -1,5 +1,20 @@
 # Carmel CLI
 
+## Install
+
+1. Clone the `carmelnetwork/cli` repo
+
+```
+git clone github:carmelnetwork/cli.git
+```
+
+2. Add the repo to your path
+
+```
+export CARMEL_CLI_PATH=<path to your repo>
+export PATH=$PATH:$CARMEL_CLI_PATH/bin
+```
+
 ## Wallets
 
 ### List all wallets
