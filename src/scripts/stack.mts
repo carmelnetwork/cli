@@ -14,9 +14,11 @@ const deployHcloudNode = async (db: any, name: string, config: any) => {
     const node = db.data[name]
     console.log(`Deploying node ${node.name} to an hcloud ...`)
 
-    const carmelDir = config.require("CARMEL_HOME")
-    const resDir = path.resolve(carmelDir, 'res')
-    
+    const carmelDomain = config.require("MAIN_SSL_DOMAIN")
+    const carmelConfig = config.require("CARMEL_NODE_TYPE")
+    const cliHome = config.require("CLI_HOME")
+
+    const resDir = path.resolve(cliHome, 'res')
     const cloudInitTplRaw = fs.readFileSync(path.resolve(resDir, 'cloud-init.tpl'), 'utf-8')
     const cloudInitTpl = ejs.compile(cloudInitTplRaw, {})
     
@@ -28,6 +30,12 @@ const deployHcloudNode = async (db: any, name: string, config: any) => {
     }, {
         key: "MAIN_ETH_PRIVATE_KEY",
         val: ethKey.privateKey
+    }, {
+        key: "CARMEL_CONFIG",
+        val: carmelConfig
+    }, {
+        key: "CARMEL_DOMAIN",
+        val: carmelDomain
     }]
 
     const userData = cloudInitTpl({ node, env })

@@ -33,14 +33,12 @@ export const uploadNodeFiles = async (node: any, files: string[][]) => {
                 username: 'carmel',
                 privateKey
             })
-
-            logger('connected; now trying to upload files ...')
     
             const res = await Promise.all((files.map((file: any) => {
                 return client.uploadFile(file[0], file[1])
             })))
 
-            logger(`uploading ${res.length} files`)
+            logger(`connected; now uploading ${res.length} files ....`)
 
             client.close()
             done(true)

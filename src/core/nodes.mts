@@ -28,11 +28,11 @@ export const getNode = async (name: string) => {
   return db.data[name]
 }
 
-export const createNode = async ({ name, config, stack, eth, project, provider, wallet, ssh, sshKey, ssl }: any) => {
+export const createNode = async ({ name, config, domain, stack, eth, project, provider, wallet, ssh, sshKey, ssl }: any) => {
   const db = await nodesDb()
 
   const details = { 
-    config, provider, wallet, sshSlot: ssh, sshPublicKey: sshKey.public, ethSlot: eth, ssl
+    config, provider, wallet, sshSlot: ssh, domain, sshPublicKey: sshKey.public, ethSlot: eth, ssl
   }
   
   db.data[name] = {
@@ -41,7 +41,7 @@ export const createNode = async ({ name, config, stack, eth, project, provider, 
 
   await db.write()
   
-  await stackUp({ name: stack, project })
+  await stackUp({ name: stack, project, config, domain })
 
   await db.read()
 

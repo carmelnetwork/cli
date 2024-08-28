@@ -1,16 +1,28 @@
 import { logger } from "@/core/utils.mts"
-import { listNodes } from "@/core/nodes.mjs"
+import { listNodes, nodesDb } from "@/core/nodes.mjs"
 import * as dotenv from 'dotenv'
 
 dotenv.config()
 
-export const run = async ({ stack, project }: any) => {
+export const run = async ({ stack, project, name }: any) => {
     logger(`checking nodes [${project}/${stack}] ...`, 'nodes')
 
     const names = await listNodes()
 
     if (names.length == 0) {
         logger(`No nodes yet`, 'nodes')
+        return 
+    }
+
+    if (name) {
+        const db = await nodesDb()
+        
+        if (!db.data[name]) {
+            logger(`the ${name} node does not exist`, 'nodes')
+            return 
+        }
+
+        Object.keys(db.data[name]).map((b: string) => logger(`${b}=${db.data[name][b]}`, `${name}`))
         return 
     }
 
@@ -24,7 +36,8 @@ export const run = async ({ stack, project }: any) => {
 export const options = () => {
     return [
         { id: "stack", description: "the stack", default: "main" },
-        { id: "project", description: "the project", default: "carmel" }
+        { id: "project", description: "the project", default: "carmel" },
+        { id: "name", description: "the name of the node", default: "" }
     ]
 }
 
