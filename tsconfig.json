@@ -1,0 +1,29 @@
+{ 
+    "ts-node": { 
+      "esm": true
+    },
+    "compilerOptions": {
+      "allowImportingTsExtensions": true,
+      "baseUrl": ".",
+      "target": "ESNext",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      "module": "NodeNext",
+      "verbatimModuleSyntax": true,
+      "moduleResolution": "NodeNext",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "jsx": "preserve",
+      "incremental": true,
+      "paths": {
+        "~/*": ["./src/*"]
+      }
+    },
+    "include": ["types/*.d.ts", "**/*.mts"],
+    "exclude": ["node_modules"]
+  }

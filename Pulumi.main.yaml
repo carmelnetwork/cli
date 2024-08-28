@@ -1,0 +1,9 @@
+config:
+  carmel:CARMEL_HOME: /Users/idc/dev/chunky/carmel/carmel-home
+  carmel:CARMEL_NODE_TYPE: relay
+  carmel:CARMEL_ROOT: /Users/idc/dev/chunky/carmel/carmel-cli
+  carmel:HCLOUD_TOKEN: MFx9kj2KlwLEQzS85TZ2JHY0m0h4OJtvvEzSviDGY1c3dZM7I3sROIrwt0Kxsst1
+  carmel:MAIN_SSL_DOMAIN: r0.carmel.network
+  carmel:PULUMI_ACCESS_TOKEN: pul-233e6fd8ca66615ea023902a51af4c604355b5f9
+  carmel:VULTR_API_KEY: 6BMCD7BHXNMAIB76PVSVOXFRJEPP5UMV635Q
+  carmel:carmelDir: /Users/idc/dev/chunky/carmel/carmel-cli
